@@ -1,7 +1,4 @@
 __doc__="""
-example
-=======
-
 This is the top level of the demonstration module.  It does not really
 provide any useful functionality.  It is merely here as something I can
 test this tool on.  A very important requirement is that Unicode
@@ -54,6 +51,17 @@ class Class1:
     # end def
 
     def doit(self, param="Hello"):
+        """
+        Do stuff.
+
+        The member param says the input param.
+
+        #### Parameters
+
+        param : [*scalar*]
+            An input to say.
+
+        """
         print("{!s} says {!s}".format(self.param, param))
         return
     # end def doit

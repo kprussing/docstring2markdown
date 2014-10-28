@@ -8,6 +8,7 @@ that I get it correct.
 class Class2:
     """
     A class defined in the submodule.
+
     """
 
     def __init__(self, param):
@@ -34,15 +35,16 @@ class Class2:
         """
         Test the required parameter.
 
-        This is a method call to check a required parameter.
+        This is a method call to check a required parameter.  The class
+        methods will wind up being level 3 headers so use level 4 for
+        the parameters.
 
-        Parameters
-        ----------
+        ##### Parameters
+
         param : [*scalar*]
             You must pass a scalar value.
 
-        Returns
-        -------
+        ##### Returns
 
         out : [*scalar*]
             1
@@ -56,10 +58,11 @@ def eggs(inp, keyword="$E=mc^2$"):
     """
     Spam the output with a keyword argument
 
-    Write given keyword argument to the input forever.
+    Write given keyword argument to the input forever.  Module level
+    functions map to level 2 headers meaning parameters should be level
+    3.
 
-    Parameters
-    ----------
+    ### Parameters
 
     inp : [*scalar*]
         Something initially printed to the screen
