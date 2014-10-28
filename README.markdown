@@ -1,7 +1,7 @@
 `docstring2markdown`
 ====================
 
-Convert the `docstrings` of a Python package into Markdown.
+Convert the `docstring`s of a Python package into Markdown.
 
 This is tool I developed while working on my dissertation.  I needed a
 way to convert the `docstring`s in my Python package into a usable API
@@ -29,6 +29,21 @@ Ultimately, I don't really care what flavor of markup language the
 `docstring` uses.  I just want to get the documentation and write it in
 a sane manner to the standard output.
 
+A few comments on how it works.  First, I will use the ATX style headers
+to section parts off.  *All* modules will be level 1 headers which
+`pandoc` maps to `\section`.  Classes will be set as level 2 headers
+under the module.  Functions offer a bit of a challenge.  Functions
+defined at the module level need to be level 2 headers while class
+methods need to be level 3 under the correct class.  
+
+A second point is handling the parameters.  Ideally, these would be
+marked as level 3 or level 4 by the documenter.  I might want to inject
+extra `#`s on the fly.  We could always let the documenter write the
+parameters as level 1 headers because in the scope of the function this
+is true.  We could then inject the function's `##` or `###` dynamically.
+
+An example module is provided for testing purposes.
+
 [Markdown]: http://daringfireball.net/projects/markdown/syntax
 [Spinx]: http://sphix-doc.org
 [CommonMark]: http://commonmark.org
@@ -41,6 +56,24 @@ Installation
 The usual suspect of:
 
     $ python setup.py install
+
+Usage
+-----
+
+Run
+
+    $ docstring2markdown module
+
+and the `docstring`s will be extracted and printed to standard out.
+
+Future Improvements
+-------------------
+
+1.  Rigorously test the routine.  Currently, it works for me and my
+    dissertation work.
+2.  Possibly integrate dynamic documenting.  Most likely this will not
+    happen because [Sphinx][sphinx] is the correct way to generate
+    Python documentation.
 
 License
 -------
