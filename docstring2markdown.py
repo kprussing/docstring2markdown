@@ -75,7 +75,10 @@ def document(obj, level="#"):
         elif pydoc.inspect.isclass(val):
             classes.update({key : val})
         elif pydoc.inspect.ismodule(val):
-            modules.update({key : val})
+            # If it's not a submodule, skip it.
+            if obj.__name__ in val.__name__:
+                modules.update({key : val})
+            # end if
         # end if
     # end for
     #
@@ -132,6 +135,9 @@ def main():
     except ImportError as err:
         logging.error("{!s}".format(err))
         sys.exit(1)
+    except RuntimeError as err:
+        logging.error("Oh no! {!s}".format(err))
+        sys.exit(2)
     # end try
     #
     sys.exit()
