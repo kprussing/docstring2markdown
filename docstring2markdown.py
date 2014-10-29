@@ -56,8 +56,6 @@ def document(obj, level="#"):
         # for
         doc += "({:s})".format(", ".join(args))
     # end if
-    #docstring = pydoc.getdoc(obj)
-    #if doc
     doc += os.linesep.join(["", "", pydoc.getdoc(obj), ""])
     #
     if pydoc.inspect.isfunction(obj):
@@ -69,11 +67,16 @@ def document(obj, level="#"):
     classes = {}
     functions = {}
     modules = {}
+    fname = pydoc.inspect.getabsfile(obj)
     for key, val in pydoc.inspect.getmembers(obj):
         if pydoc.inspect.isfunction(val):
-            functions.update({key : val})
+            if pydoc.inspect.getabsfile(val) == fname:
+                functions.update({key : val})
+            # end if
         elif pydoc.inspect.isclass(val):
-            classes.update({key : val})
+            if pydoc.inspect.getabsfile(val) == fname:
+                classes.update({key : val})
+            # end if
         elif pydoc.inspect.ismodule(val):
             # If it's not a submodule, skip it.
             if obj.__name__ in val.__name__:
