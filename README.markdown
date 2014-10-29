@@ -45,7 +45,7 @@ is true.  We could then inject the function's `##` or `###` dynamically.
 An example module is provided for testing purposes.
 
 [Markdown]: http://daringfireball.net/projects/markdown/syntax
-[Spinx]: http://sphix-doc.org
+[Sphinx]: http://sphix-doc.org
 [CommonMark]: http://commonmark.org
 [pandoc]: http://johnmacfarlane.net/pandoc/
 
