@@ -69,12 +69,17 @@ def document(obj, level="#"):
     modules = {}
     fname = pydoc.inspect.getabsfile(obj)
     for key, val in pydoc.inspect.getmembers(obj):
+        if key[0] == "_":
+            # Do _not_ handle 'private' members.
+            continue
+        # end if
         if pydoc.inspect.isfunction(val):
             if pydoc.inspect.getabsfile(val) == fname:
                 functions.update({key : val})
             # end if
         elif pydoc.inspect.isclass(val):
-            if pydoc.inspect.getabsfile(val) == fname:
+            # The __class__ object is a false alarm.
+            if key == "__class__":
                 classes.update({key : val})
             # end if
         elif pydoc.inspect.ismodule(val):
