@@ -1,11 +1,13 @@
 from setuptools import setup
-from docstring2markdown import __version__ as version
 
 import os
 here = os.path.abspath(os.path.dirname(__file__))
 
 with open(os.path.join(here, "README.markdown"), "r") as fid:
     long_desc=fid.read()
+
+with open(os.path.join(here, "VERSION"), "r") as fid:
+    version=fid.read().strip()
 
 setup(
         name="docstring2markdown",

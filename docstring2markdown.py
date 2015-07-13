@@ -11,11 +11,14 @@ the object is.
 The package is imported at runtime, so it had better be a valid package.
 
 """
-__version__ = "0.1.0"
-
 import logging
 import os
+import pkg_resources
 import pydoc
+
+__version__ = pkg_resources.get_distribution(
+        os.path.split(os.path.dirname(__file__))[1]
+    ).version
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
