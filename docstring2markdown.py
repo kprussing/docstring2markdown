@@ -81,8 +81,13 @@ def document(obj, level="#"):
                 functions.update({key : val})
             # end if
         elif pydoc.inspect.isclass(val):
-            # The __class__ object is a false alarm.
-            if key == "__class__":
+            logger.debug(
+                    "Check names {0:s} {1:s}".format(
+                        obj.__name__, val.__module__
+                    )
+                )
+            # Only grab the true definition
+            if obj.__name__ == val.__module__:
                 classes.update({key : val})
             # end if
         elif pydoc.inspect.ismodule(val):
