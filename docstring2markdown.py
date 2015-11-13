@@ -72,7 +72,7 @@ def document(obj, level="#"):
     modules = {}
     fname = pydoc.inspect.getabsfile(obj)
     for key, val in pydoc.inspect.getmembers(obj):
-        if key[0] == "_":
+        if key[0] == "_" and key != "__init__":
             # Do _not_ handle 'private' members.
             continue
         # end if
